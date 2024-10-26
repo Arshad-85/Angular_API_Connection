@@ -25,14 +25,18 @@ namespace TaskManager_BackEnd.Controller
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            if (_context.Users == null)
+            {
+                return NotFound();
+            }
+            return await _context.Users.Include(a => a.Address).Include(b => b.Tasks).ToListAsync();
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.Users.Include(a => a.Address).FirstOrDefaultAsync(b => id == b.Id);
 
             if (user == null)
             {
@@ -88,10 +92,14 @@ namespace TaskManager_BackEnd.Controller
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
+            if (_context.Users == null)
+            {
+                return NotFound();
+            }
             var user = await _context.Users.FindAsync(id);
             if (user == null)
             {
-                return NotFound();
+                return NoContent();
             }
 
             _context.Users.Remove(user);
@@ -102,7 +110,7 @@ namespace TaskManager_BackEnd.Controller
 
         private bool UserExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

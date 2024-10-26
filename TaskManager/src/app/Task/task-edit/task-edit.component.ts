@@ -27,8 +27,6 @@ export class TaskEditComponent implements OnInit{
 
     let id = this.route.snapshot.paramMap.get('id');
     this.taskid = Number(id);
-
-
   }
 
   ngOnInit(): void{
@@ -43,7 +41,7 @@ export class TaskEditComponent implements OnInit{
     let task = this.profileForm1.value;
     task.id = this.taskid
     this.taskservice.updateTask(this.taskid,task).subscribe(data => {
-      this.router.navigate(['/'])
+      this.router.navigate(['toTask'])
     })
   }
 

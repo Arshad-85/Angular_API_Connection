@@ -25,13 +25,21 @@ namespace TaskManager_BackEnd.Controller
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TaskItem>>> GetTasks()
         {
-            return await _context.TaskItem.ToListAsync();
+            if (_context.TaskItem == null)
+            {
+                return NotFound();
+            }
+            return await _context.TaskItem.Include(a => a.Assignee).ToListAsync();
         }
 
         // GET: api/TaskItems/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TaskItem>> GetTaskItem(int id)
         {
+            if (_context.TaskItem == null)
+            {
+                return NotFound();
+            }
             var taskItem = await _context.TaskItem.FindAsync(id);
 
             if (taskItem == null)
@@ -78,6 +86,10 @@ namespace TaskManager_BackEnd.Controller
         [HttpPost]
         public async Task<ActionResult<TaskItem>> PostTaskItem(TaskItem taskItem)
         {
+            if (_context.TaskItem == null)
+            {
+                return Problem("Entity set 'TaskContext.Tasks' is null.");
+            }
             _context.TaskItem.Add(taskItem);
             await _context.SaveChangesAsync();
 
@@ -88,6 +100,10 @@ namespace TaskManager_BackEnd.Controller
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTaskItem(int id)
         {
+            if (_context.TaskItem == null)
+            {
+                return NotFound();
+            }
             var taskItem = await _context.TaskItem.FindAsync(id);
             if (taskItem == null)
             {
@@ -102,7 +118,7 @@ namespace TaskManager_BackEnd.Controller
 
         private bool TaskItemExists(int id)
         {
-            return _context.TaskItem.Any(e => e.Id == id);
+            return (_context.TaskItem?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
