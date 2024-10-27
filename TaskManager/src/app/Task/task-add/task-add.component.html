@@ -1,0 +1,25 @@
+<div class="d-flex justify-content-center col-12">
+    <form class="col-6 mt-4 bg-primary p-4 rounded-2 text-light" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" aria-describedby="titleHelp" name="title" formControlName="title"  required>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <input type="text" class="form-control" id="description" aria-describedby="descriptionHelp" name="description" formControlName="description" required>
+        </div>
+        <div class="mb-3">
+          <label for="dueDate" class="form-label">Due Date</label>
+          <input type="date" class="form-control" id="dueDate" aria-describedby="dueDateHelp" name="dueDate" formControlName="dueDate"  required>
+        </div>
+        <div class="mb-3">
+          <label for="priority" class="form-label">Priority</label>
+          <select type="text" class="form-control" id="priority" aria-describedby="priorityHelp" name="priority" formControlName="priority" required>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-secondary" [disabled]="profileForm.invalid">Submit</button>
+    </form>
+</div>

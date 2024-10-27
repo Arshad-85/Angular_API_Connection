@@ -1,0 +1,37 @@
+<app-home></app-home>
+<div class="container mt-5 card shadow p-3 mb-5 bg-body-tertiary rounded">
+    <div class="container-fluid d-flex justify-content-between mb-3">
+      <div>
+        <input type="search" class="form-control" placeholder="Search" aria-label="Search" [(ngModel)]="searchText">
+      </div>
+      <div>
+        <button class="btn btn-dark" (click)="AddUser()"><i class="bi bi-plus-lg"></i>New User</button>
+      </div>
+    </div>
+  
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Phone Number</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of Users | serachUser:searchText">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.password}}</td>
+            <td>{{user.phoneNumber}}</td>
+            <td>
+              <button type="button" class="btn btn-primary me-2" (click)="OnEdit(user.id)"><i class="bi bi-pencil"></i></button>
+              <button  type="button" class="btn btn-danger" (click)="OnDelete(user.id)"><i class="bi bi-trash-fill"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
