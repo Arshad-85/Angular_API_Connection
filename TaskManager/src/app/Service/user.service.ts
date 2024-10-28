@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Task } from './task.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,4 +32,16 @@ export interface User{
   email:string,
   password:string,
   phoneNumber:string
+  address?:Address
+  tasks?:Task[]
 }
+
+export interface Address{
+  id : number
+  addressLine1:string,
+  addressLine2:string,
+  city:string;
+  country:string,
+  userId:number
+}
+

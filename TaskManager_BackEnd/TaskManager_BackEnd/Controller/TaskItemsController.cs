@@ -40,7 +40,7 @@ namespace TaskManager_BackEnd.Controller
             {
                 return NotFound();
             }
-            var taskItem = await _context.TaskItem.FindAsync(id);
+            var taskItem = await _context.TaskItem.Include(a => a.Assignee).FirstOrDefaultAsync(a => a.Id == id);
 
             if (taskItem == null)
             {

@@ -117,7 +117,8 @@ namespace TaskManager_BackEnd.Migrations
                 {
                     b.HasOne("TaskManager_BackEnd.Entity.User", "User")
                         .WithOne("Address")
-                        .HasForeignKey("TaskManager_BackEnd.Entity.Address", "UserId");
+                        .HasForeignKey("TaskManager_BackEnd.Entity.Address", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("User");
                 });

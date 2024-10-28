@@ -14,12 +14,22 @@
         </div>
         <div class="mb-3">
           <label for="priority" class="form-label">Priority</label>
-          <select type="text" class="form-control" id="priority" aria-describedby="priorityHelp" name="priority" formControlName="priority" required>
+          <select type="text" class="form-select" id="priority" formControlName="priority" required>
+            <option value="" disabled>Select priority level</option>
             <option value="Medium">Medium</option>
             <option value="High">High</option>
             <option value="Low">Low</option>
           </select>
         </div>
+          <div class="mb-3">
+            <label for="priority" class="form-label">Assigned User</label>
+            <select class="form-select"  formControlName="assigneeId" id="Users">
+              <option value="" disabled>Select a user</option>
+              <ng-container *ngFor="let user of Users">
+                <option [value]="user.id">{{ user?.name }}</option>
+              </ng-container>
+            </select>    
+          </div>
         <button type="submit" class="btn btn-secondary" [disabled]="profileForm.invalid">Submit</button>
     </form>
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +13,7 @@ import { TaskService } from '../../Service/task.service';
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css',
 })
-export class TaskListComponent {
+export class TaskListComponent implements OnInit {
   title = 'TaskManager';
   searchText:string = ""
 
@@ -25,6 +25,7 @@ export class TaskListComponent {
   loadTask() {
     this.taskSerivce.getTask().subscribe((data) => {
       this.tasks = data;
+      console.log(data);
     });
   }
 

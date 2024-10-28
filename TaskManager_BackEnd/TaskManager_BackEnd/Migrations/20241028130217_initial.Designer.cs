@@ -12,8 +12,8 @@ using TaskManager_BackEnd.Data;
 namespace TaskManager_BackEnd.Migrations
 {
     [DbContext(typeof(TaskContext))]
-    [Migration("20241026184447_new")]
-    partial class @new
+    [Migration("20241028130217_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -120,7 +120,8 @@ namespace TaskManager_BackEnd.Migrations
                 {
                     b.HasOne("TaskManager_BackEnd.Entity.User", "User")
                         .WithOne("Address")
-                        .HasForeignKey("TaskManager_BackEnd.Entity.Address", "UserId");
+                        .HasForeignKey("TaskManager_BackEnd.Entity.Address", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("User");
                 });

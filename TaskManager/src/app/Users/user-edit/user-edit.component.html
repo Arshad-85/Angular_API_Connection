@@ -16,6 +16,27 @@
           <label for="phoneNumber" class="form-label">Phone Number</label>
           <input type="text" class="form-control" id="phoneNumber" aria-describedby="phoneNumberHelp" name="phoneNumber" formControlName="phoneNumber"  required>
         </div>
-        <button type="submit" class="btn btn-secondary">Submit</button>
+        <div formGroupName="address">
+        <div class="mb-3">
+          <label for="addressLine1" class="form-label fw-semibold">Address Line 1</label>
+          <input type="text" class="form-control" id="addressLine1" formControlName="addressLine1" placeholder="Street, PO Box" required>
+        </div>
+        <div class="mb-3">
+          <label for="addressLine2" class="form-label fw-semibold">Address Line 2</label>
+          <input type="text" class="form-control" id="addressLine2" formControlName="addressLine2" placeholder="Apartment, Suite, Unit">
+        </div>
+        <div class="mb-3">
+          <label for="city" class="form-label fw-semibold">City</label>
+          <input type="text" class="form-control" id="city" formControlName="city" placeholder="Enter city" required>
+        </div>
+        <div class="mb-3">
+          <label for="country" class="form-label fw-semibold">Country</label>
+          <select class="form-select" id="country" formControlName="country" required>
+            <option value="" disabled>Select Country</option>
+            <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+          </select>
+        </div>
+        </div>
+        <button type="submit" class="btn btn-secondary" [disabled]="profileForm1.invalid">Update</button>
     </form>
 </div>

@@ -20,6 +20,15 @@
             <option value="Low">Low</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-secondary" [disabled]="profileForm1.invalid">Submit</button>
+        <div class="mb-3">
+          <label for="priority" class="form-label">Assigned User</label>
+          <select class="form-select"  formControlName="assigneeId" id="Users">
+            <!-- <option value="" disabled>Select a user</option> -->
+            <ng-container *ngFor="let user of Users">
+              <option [value]="user.id">{{ user?.name }}</option>
+            </ng-container>
+          </select>    
+        </div>
+        <button type="submit" class="btn btn-secondary" [disabled]="profileForm1.invalid">Update</button>
     </form>
 </div>
