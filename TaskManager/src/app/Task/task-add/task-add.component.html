@@ -1,26 +1,28 @@
 <div class="d-flex justify-content-center col-12">
-    <form class="col-6 mt-4 bg-primary p-4 rounded-2 text-light" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-        <div class="mb-3">
-          <label for="title" class="form-label">Title</label>
-          <input type="text" class="form-control" id="title" aria-describedby="titleHelp" name="title" formControlName="title"  required>
-        </div>
-        <div class="mb-3">
-          <label for="description" class="form-label">Description</label>
-          <input type="text" class="form-control" id="description" aria-describedby="descriptionHelp" name="description" formControlName="description" required>
-        </div>
-        <div class="mb-3">
-          <label for="dueDate" class="form-label">Due Date</label>
-          <input type="date" class="form-control" id="dueDate" aria-describedby="dueDateHelp" name="dueDate" formControlName="dueDate"  required>
-        </div>
-        <div class="mb-3">
-          <label for="priority" class="form-label">Priority</label>
-          <select type="text" class="form-select" id="priority" formControlName="priority" required>
-            <option value="" disabled>Select priority level</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-            <option value="Low">Low</option>
-          </select>
-        </div>
+    <form class=" mt-4 p-4 rounded-2 text-dark col-7" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-6">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" aria-describedby="titleHelp" name="title" formControlName="title"  required>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="description" aria-describedby="descriptionHelp" name="description" formControlName="description" required>
+          </div>
+          <div class="mb-3">
+            <label for="dueDate" class="form-label">Due Date</label>
+            <input type="date" class="form-control" id="dueDate" aria-describedby="dueDateHelp" name="dueDate" formControlName="dueDate"  required>
+          </div>
+          <div class="mb-3">
+            <label for="priority" class="form-label">Priority</label>
+            <select type="text" class="form-select" id="priority" formControlName="priority" required>
+              <option value="" disabled>Select priority level</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
           <div class="mb-3">
             <label for="priority" class="form-label">Assigned User</label>
             <select class="form-select"  formControlName="assigneeId" id="Users">
@@ -30,6 +32,33 @@
               </ng-container>
             </select>    
           </div>
-        <button type="submit" class="btn btn-secondary" [disabled]="profileForm.invalid">Submit</button>
+        </div>
+  
+          <div class="col-6">
+            <h3>Add CheckList</h3>
+            <hr>
+            <div formArrayName="checkLists">
+              <div class="row" *ngFor="let checkList of myCheckList.controls; let i = index">
+                <div class="" [formGroupName]="i">
+                  <div class="row">
+                    <div class="col form-check">
+                      <input type="checkbox" class="form-check-input mb-2" formControlName="isDone">
+                      <input type="text" autocomplete="off" class="form-control mb-2" id="description"formControlName="name">
+                    </div>
+                    <div class="col">
+                      <button type="button" class="btn btn-danger" (click)="removeChecklist(i)">X</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button *ngIf="myCheckList.length < 100" type="button" class="btn btn-success"
+              (click)="addChecklist()"> + Add</button>
+            </div>
+          </div>
+      </div>
+        
+      <button type="submit" class="btn btn-secondary" [disabled]="profileForm.invalid">Submit</button>
     </form>
 </div>

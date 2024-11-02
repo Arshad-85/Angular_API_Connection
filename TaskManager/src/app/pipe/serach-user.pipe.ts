@@ -9,9 +9,6 @@ export class SerachUserPipe implements PipeTransform {
 
   transform(value: User[], ...args: string[]): User[] {
     const searchtext = args[0];
-    console.log(value)
-    console.log(searchtext)
-
     return value.filter(a => a.name.toLowerCase().includes(searchtext.toLowerCase()) || 
     a.phoneNumber.toString().includes(searchtext.toString()));
   }

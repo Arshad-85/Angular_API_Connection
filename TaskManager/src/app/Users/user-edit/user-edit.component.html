@@ -1,5 +1,6 @@
 <div class="d-flex justify-content-center col-12">
-    <form class="col-6 mt-4 bg-primary p-4 rounded-2 text-light" [formGroup]="profileForm1" (ngSubmit)="onSubmit()">
+    <form class="col-6 mt-4 p-4 rounded-2 text-dark shadow-lg" [formGroup]="profileForm1" (ngSubmit)="onSubmit()">
+      <h2 class="d-flex justify-content-center text-dark">Update the User</h2>
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
           <input type="text" class="form-control" id="name" aria-describedby="nameHelp" name="name" formControlName="name"  required>
@@ -27,7 +28,10 @@
         </div>
         <div class="mb-3">
           <label for="city" class="form-label fw-semibold">City</label>
-          <input type="text" class="form-control" id="city" formControlName="city" placeholder="Enter city" required>
+          <select class="form-select" id="country" formControlName="city" required>
+            <option value="" disabled>Select city</option>
+            <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+          </select>
         </div>
         <div class="mb-3">
           <label for="country" class="form-label fw-semibold">Country</label>

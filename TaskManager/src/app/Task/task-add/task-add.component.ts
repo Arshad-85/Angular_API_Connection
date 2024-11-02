@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TaskService } from '../../Service/task.service';
 import { User, UserService } from '../../Service/user.service';
@@ -23,9 +23,15 @@ export class TaskAddComponent implements OnInit{
       description: [''],
       dueDate: [''],
       priority: ['medium'],
-      assigneeId: ['']
+      assigneeId: [''],
+      checkLists: this.fb.array([])
     })
   }
+
+  get myCheckList() :FormArray{
+    return this.profileForm.get('checkLists') as FormArray
+  }
+
   ngOnInit(): void {
    this.userService.getUser().subscribe((data) => {
     this.Users = data;
@@ -39,5 +45,16 @@ export class TaskAddComponent implements OnInit{
     this.taskService.addTask(task).subscribe(data => {
       this.router.navigate(['toTask'])
     })
+  }
+
+  removeChecklist(index:number){
+    this.myCheckList.removeAt(index);
+  }
+
+  addChecklist(){
+    this.myCheckList.push(this.fb.group({
+      name: [''],
+      isDone: [false]
+    }))
   }
 }

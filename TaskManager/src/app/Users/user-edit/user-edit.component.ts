@@ -17,6 +17,10 @@ export class UserEditComponent implements OnInit{
  profileForm1: FormGroup;
  userid: number;
  currentUser! : User;
+
+ cities: string[] = ['Colombo', 'Kandy', 'Galle', 'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Gampaha', 'Hambantota', 'Jaffna', 'Kalutara', 'Kegalle', 
+ 'Kilinochchi', 'Kurunegala', 'Mannar', 'Matale', 'Matara', 'Moneragala', 'Mullativu', 'Nuwara Eliya', 'Polonnaruwa', 'Puttalam', 'Ratnapura', 'Trincomalee', 'Vavuniya'];
+
  countries: string[] = [
   "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda",
   "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain",
@@ -73,6 +77,7 @@ export class UserEditComponent implements OnInit{
   this.userService.getUserById(this.userid).subscribe(data => {
     this.currentUser = data;
     this.profileForm1.patchValue(data);
+    console.log(data)
   })
 }
 

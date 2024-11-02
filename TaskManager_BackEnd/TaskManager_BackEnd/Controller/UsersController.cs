@@ -97,7 +97,7 @@ namespace TaskManager_BackEnd.Controller
             {
                 return NotFound();
             }
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.Users.Include(a => a.Address).SingleOrDefaultAsync(i => i.Id == id);
             if (user == null)
             {
                 return NoContent();
