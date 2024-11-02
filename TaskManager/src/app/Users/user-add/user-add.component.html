@@ -2,19 +2,19 @@
     <form class="col-6 mt-4 p-4 rounded-2 text-dark shadow-lg " [formGroup]="profileForm1" (ngSubmit)="onSubmit()">
       <h2 class="d-flex justify-content-center text-dark">Add a New User</h2>
         <div class="mb-3">
-          <label for="name" class="form-label">Name</label>
+          <label for="name" class="form-label fw-semibold">Name</label>
           <input type="text" class="form-control" id="name" aria-describedby="nameHelp" name="name" formControlName="name"  required placeholder="Arshad M N M"> 
         </div>
         <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
+          <label for="email" class="form-label fw-semibold">Email</label>
           <input type="text" class="form-control" id="email" aria-describedby="emailHelp" name="email" formControlName="email" required placeholder="ex@gmail.com">
         </div>
         <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
+          <label for="password" class="form-label fw-semibold">Password</label>
           <input type="text" class="form-control" id="password" aria-describedby="passwordHelp" name="password" formControlName="password"  required placeholder="Ex: ars!2@">
         </div>
         <div class="mb-3">
-          <label for="phoneNumber" class="form-label">Phone Number</label>
+          <label for="phoneNumber" class="form-label fw-semibold">Phone Number</label>
           <input type="text" class="form-control" id="phoneNumber" aria-describedby="phoneNumberHelp" name="phoneNumber" formControlName="phoneNumber"  required placeholder="077 or 076 or 075">
         </div>
         <div formGroupName="address">
@@ -28,7 +28,7 @@
         </div>
         <div class="mb-3">
           <label for="city" class="form-label fw-semibold">City</label>
-          <select class="form-select" id="country" formControlName="country" required>
+          <select class="form-select" id="country" formControlName="city" required>
             <option value="" disabled>Select city</option>
             <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
           </select>

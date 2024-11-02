@@ -27,7 +27,7 @@
             <td>{{task.title}}</td>
             <td>{{task.description}}</td>
             <td>{{task.dueDate}}</td>
-            <td  [ngClass]="{'colour-for-hard': task.priority === 'Hard' , 'colour-for-low' : task.priority == 'Low' , 'colour-for-medium' : task.priority == 'Medium'}">{{task.priority}}</td>
+            <td  [ngClass]="{'text-success': task.priority === 'Hard' , 'colour-for-low' : task.priority == 'Low' , 'colour-for-medium' : task.priority == 'Medium'}">{{task.priority}}</td>
             <td>{{task.assignee?.name}}</td>
             <td>
               <button type="button" class="btn btn-primary me-2" (click)="onEdit(task.id)"><i class="bi bi-pencil"></i></button>
@@ -37,7 +37,4 @@
         </tbody>
       </table>
 </div>
-
-
-
 
