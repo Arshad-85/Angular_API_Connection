@@ -14,6 +14,8 @@ namespace TaskManager_BackEnd.Data
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<UserLogin> UsersLogin { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()

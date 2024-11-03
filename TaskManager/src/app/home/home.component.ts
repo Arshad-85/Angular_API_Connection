@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, CommonModule,SearchPipe,FormsModule],
+  imports: [RouterOutlet, RouterModule, CommonModule,SearchPipe,FormsModule, HomeComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -21,5 +21,9 @@ export class HomeComponent {
 
   GoToTask(){
     this.router.navigate(['toTask'])
+  }
+
+  GoToHome(){
+    this.router.navigate(['toHome']);
   }
 }
