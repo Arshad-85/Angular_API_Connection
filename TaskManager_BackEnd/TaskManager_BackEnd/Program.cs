@@ -1,5 +1,8 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using TaskManager_BackEnd.Data;
+using TaskManager_BackEnd.IRepository;
+using TaskManager_BackEnd.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +20,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<TaskContext>(option => 
 option.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
+
+builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 builder.Services.AddCors(option =>
 {

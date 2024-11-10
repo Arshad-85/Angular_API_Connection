@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HomeComponent } from '../home/home.component';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from '../../home/home.component';
 import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -14,4 +14,8 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 export class UserLoginComponent {
 
 
+
+  onSubmit(){
+    
+  }
 }
